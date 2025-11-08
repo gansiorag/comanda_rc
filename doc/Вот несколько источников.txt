@@ -1,0 +1,57 @@
+Вот несколько источников и датасетов, которые могут быть полезны для создания модели классификации фильмов по системе 
+рейтингов MPAA (Motion Picture Association of America):
+
+---
+
+### 1. **IMDb Datasets (через Kaggle или официальный источник)**
+- **Описание**: IMDb предоставляет обширные данные о фильмах, включая рейтинги, жанры, актёров, сюжеты и иногда MPAA-рейтинги.
+- **Ссылки**:
+  - [IMDb Movies Dataset на Kaggle](https://www.kaggle.com/datasets/stefanoleone992/imdb-extensive-dataset)
+  - [IMDb Official Datasets (для некоммерческого использования)](https://developer.imdb.com/non-commercial-datasets/)
+- **Примечание**: Не все записи содержат MPAA-рейтинг, но его можно извлечь из текстовых полей или дополнить через парсинг IMDb-страниц.
+
+---
+
+### 2. **MovieLens Datasets**
+- **Описание**: Хотя основной фокус — рекомендательные системы, некоторые версии датасета содержат информацию о возрастных ограничениях или могут быть обогащены данными из других источников.
+- **Ссылка**: [MovieLens Latest Datasets](https://grouplens.org/datasets/movielens/)
+- **Примечание**: MPAA-рейтинги не всегда присутствуют напрямую, но можно сопоставить по ID фильма с IMDb.
+
+---
+
+### 3. **CMU Movie Summary Corpus**
+- **Описание**: Содержит сюжеты, метаданные и иногда рейтинги. Может потребовать дополнительной обработки.
+- **Ссылка**: [CMU Movie Summary Corpus](http://www.cs.cmu.edu/~ark/personas/)
+- **MPAA**: Некоторые файлы содержат поле `rating`, включая MPAA (например, "R", "PG-13").
+
+---
+
+### 4. **The Movies Dataset (Kaggle)**
+- **Описание**: Популярный датасет с информацией о 45 000+ фильмов, включая рейтинги, бюджет, кассовые сборы и т.д.
+- **Ссылка**: [The Movies Dataset на Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)
+- **MPAA**: Поле `adult` и `belongs_to_collection` не содержат MPAA напрямую, но в файле `movies_metadata.csv` иногда встречается поле `"content_rating"` или `"certification"`. Однако данные неполные — может потребоваться очистка и дополнение.
+
+---
+
+### 5. **TMDb (The Movie Database) API + Scraping**
+- **Описание**: TMDb часто содержит информацию о возрастных рейтингах по странам, включая США (MPAA).
+- **Ссылка**: [TMDb API](https://www.themoviedb.org/documentation/api)
+- **Как использовать**: Запросить фильмы с фильтром по `certification` (например, `US` country code). Пример запроса:
+  ```
+  https://api.themoviedb.org/3/discover/movie?certification_country=US&certification=R&api_key=YOUR_API_KEY
+  ```
+
+---
+
+### 6. **Academic Torrents – Large Movie Review Dataset (часто используется для сентимент-анализа, но можно адаптировать)**
+- **Описание**: Хотя основной фокус — отзывы, можно объединить с IMDb по ID для получения MPAA.
+- **Ссылка**: [Large Movie Review Dataset](https://academictorrents.com/details/40799488847f3d4e5c2a3c8e7a8d6e0e3b9d3a1f)
+
+---
+
+### Советы:
+- MPAA-рейтинги: **G**, **PG**, **PG-13**, **R**, **NC-17** (иногда **X**, но устаревший).
+- Данные часто разрознены — лучше объединить несколько источников (например, IMDb + TMDb).
+- Убедитесь, что вы соблюдаете условия лицензирования при использовании данных.
+
+Если нужно, могу помочь с кодом для объединения датасетов или парсинга MPAA-рейтингов из открытых источников.
